@@ -60,7 +60,6 @@ func initListener() {
 	}
 
 	logger.Info("Started listening...", zap.String("address", addr))
-	return
 }
 
 // signalsListener cria um channel em Go para ser notificado
@@ -69,7 +68,7 @@ func initListener() {
 func signalsListener(server *grpc.Server) {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
-	_ = <-sigs
+	<-sigs
 
 	logger.Info("Gracefully stopping server...")
 	server.GracefulStop()
