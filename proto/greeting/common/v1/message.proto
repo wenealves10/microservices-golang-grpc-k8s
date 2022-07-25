@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package greeting.common.v1;
+
+option go_package = "github.com/wenealves10/pkg/pb/greeting/common/v1;common_v1";
+
+message Message {
+    enum Greeter {
+        HELLO = 0;
+        GOODBYE = 1;
+        HI = 2;
+        MORNING = 3;
+        AFTERNOON = 4;
+        EVENING = 5;
+        NIGHT = 6;
+    }
+
+    Greeter greeter = 1;
+    string name = 2;
+}
