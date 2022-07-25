@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: greeting
+  name: greeting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greeting
+  template:
+    metadata:
+      labels:
+        app: greeting
+    spec:
+      containers:
+        - name: service
+          image: gcr.io/diesel-command-355401/microservices-golang-grpc-k8s:v0.0.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 50051
